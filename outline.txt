@@ -1,0 +1,27 @@
+SCSH-E
+
+A pixel-graphic space game
+
+**Goal**
+
+I want to create a feeling of discovery. That you might start alone and with no resources and eventually build up a safe haven, space ships, space stations, and even interstellar travel to meet others, much like how we have goals for our own species on Earth. To do this I want to minimize graphics, create a procedural environment (unlimited) but with definite points of interest, and create high-risk high-reward scenarios within this. 
+
+Start:
+
+You crash land onto an empty starter planet in your ship, which is blown apart. When you check your ship it shows that the engine is broken and therefore cannot be flown. A basic engine can be constructed using steel, formed from iron and carbon. Iron is an ore that must be mined from underground. But more importantly the cockpit (also damaged) doesn't provide weather protection, instead the player must create a shelter using available materials (most likely wood) to survive.
+
+Hazards:
+
+Hazards 
+
+Ships:
+
+A ship is, at a minimum, a cockpit and engine. The engine provides gravity lift in the atmosphere (avoiding the need for orbital mechanics on ships), and thrusters in space. Ships can also have a hull where other parts can attach, wings which provide better control in atmospheres, cargo bays to store materials, weapons, etc. 
+
+
+Planet Types:
+
+Planets are defined by (1) their distance from the sun, (2) their mineral composition (3) their gas composition. Planets also have ores that can be mined to build tools and may have sources of natural energy. 
+
+Minerals:
+
