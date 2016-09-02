@@ -13,47 +13,27 @@ var viewport = {
 }
 
 var ship = {
-	x:[0,0,150],
-	y:[0,0,150],
+	x:[0,0,2000],
+	y:[0,0,0],
 	dir:[0,0,0],
 	lastDir: null,
+	baseMult: 1,
 	speedMult: 10
 }
 
 var sun = {
-	x:500,
-	y:500,
-	r:100,
+	x:0,
+	y:0,
+	r:1000,
 	soi: 150
 }
 
 var planet = {
-	dist:200,
-	rot:Math.PI*1,
-	speed:-5000,
-	r:10,
+	dist:2000,
+	rot:0,
+	speed:-100000,
+	r:500,
 	soi: 25
-}
-
-function simulate(elapsed) {
-	// Ship simulation
-	ship_establishDir();
-	ship.x[0] = ship.x[1]; ship.x[1] = ship.x[2];
-	ship.y[0] = ship.y[1]; ship.y[1] = ship.y[2];
-	ship.dir[0] = ship.dir[1]; ship.dir[1] = ship.dir[2];
-	ship.dir[2] = ship.lastDir;
-	if (ship.lastDir!=null) {
-		ship.x[2] = ship.x[1] + elapsed/ship.speedMult*Math.cos(ship.dir[2]);
-		ship.y[2] = ship.y[1] + elapsed/ship.speedMult*Math.sin(ship.dir[2]);
-	}
-	// Planet simulation
-	planet.rot = (planet.rot+elapsed/planet.speed);
-	if (planet.rot>(Math.PI*2)) {planet.rot-Math.PI*2;}
-	if (planet.rot<0) {planet.rot+Math.PI*2;}
-	// Change z
-	if (keys.shift) {viewport.z+=elapsed/viewport.speed;}
-	if (keys.ctrl) {viewport.z-=elapsed/viewport.speed;}
-	if (viewport.z<viewport.d) {viewport.z = viewport.d;} // bottom out at d
 }
 
 // function inSOI(object) {
@@ -74,6 +54,8 @@ function readyplayerone() {
 	// add the event listener
 	document.addEventListener("keydown", keydown, false);
 	document.addEventListener("keyup", keyup, false);
+	document.addEventListener("blur", clearKeys, false);
+
 
 	tick();
 }
@@ -93,6 +75,10 @@ function changeKeys(event,type) {
 	if (event.keyCode==83) {keys.up=type;}
 	if (event.keyCode==16) {keys.shift=type;}
 	if (event.keyCode==17) {keys.ctrl=type;}
+}
+
+function clearKeys() {
+	keys.down=false;keys.left=false;keys.right=false;keys.up=false;keys.shift=false;keys.ctrl=false;
 }
 
 function ship_establishDir() {

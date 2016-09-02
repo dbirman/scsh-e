@@ -36,13 +36,13 @@ function renderShip(ship) {
 function renderPlanet(planet,offset,zoom) {
 	ctx.beginPath();
 	ctx.strokeStyle="#FFFFFF";
-	ctx.arc(canvas.width/2+(sun.x+planet.dist*Math.cos(planet.rot)-offset[0])/zoom,canvas.height/2+(sun.y+planet.dist*Math.sin(planet.rot)-offset[1])/zoom,planet.r,0,2*Math.PI);
+	ctx.arc(canvas.width/2+(sun.x-offset[0])*zoom+planet.dist*Math.cos(planet.rot)*zoom,canvas.height/2+(sun.y-offset[1])*zoom+planet.dist*Math.sin(planet.rot)*zoom,zoom*planet.r,0,2*Math.PI);
 	ctx.stroke();
 }
 
 function renderSun(sun,offset,zoom) {
   ctx.beginPath();
   ctx.strokeStyle="#FFFF00";
-  ctx.arc(canvas.width/2+(sun.x-offset[0])/zoom,canvas.height/2+(sun.y-offset[1])/zoom, zoom*sun.r, 0, 2 * Math.PI);
+  ctx.arc(canvas.width/2+(sun.x-offset[0])*zoom,canvas.height/2+(sun.y-offset[1])*zoom, zoom*sun.r, 0, 2 * Math.PI);
   ctx.stroke();
 }
