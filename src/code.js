@@ -22,6 +22,7 @@ var ship = {
 }
 
 var sun = {
+	// all positions are calculated relative to the sun
 	x:0,
 	y:0,
 	r:1000,
@@ -79,17 +80,4 @@ function changeKeys(event,type) {
 
 function clearKeys() {
 	keys.down=false;keys.left=false;keys.right=false;keys.up=false;keys.shift=false;keys.ctrl=false;
-}
-
-function ship_establishDir() {
-	var nX=0, nY=0;
-	if (keys.up) {nY+=1;}
-	if (keys.down) {nY-=1;}
-	if (keys.right) {nX+=1;}
-	if (keys.left) {nX-=1;}
-	if (nX==0 && nY==0) {
-		ship.lastDir=null;
-	} else {
-		ship.lastDir = Math.atan2(nY,nX);
-	}
 }
