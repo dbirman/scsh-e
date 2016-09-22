@@ -17,27 +17,15 @@ function simulatePlanet(elapsed) {
 
 function simulateShip(elapsed) {
 	// Ship simulation
-	ship_establishDir();
 	ship.x[0] = ship.x[1]; ship.x[1] = ship.x[2];
 	ship.y[0] = ship.y[1]; ship.y[1] = ship.y[2];
-	ship.dir[0] = ship.dir[1]; ship.dir[1] = ship.dir[2];
-	ship.dir[2] = ship.lastDir;
-	ship.speedMult = ship.baseMult/(viewport.d/viewport.z);
-	if (ship.lastDir!=null) {
-		ship.x[2] = ship.x[1] + elapsed/ship.speedMult*Math.cos(ship.dir[2]);
-		ship.y[2] = ship.y[1] + elapsed/ship.speedMult*Math.sin(ship.dir[2]);
-	}
+	ship_establishDir(elapsed);
 }
 
-function ship_establishDir() {
-	var nX=0, nY=0;
-	if (keys.up) {nY+=1;}
-	if (keys.down) {nY-=1;}
-	if (keys.right) {nX+=1;}
-	if (keys.left) {nX-=1;}
-	if (nX==0 && nY==0) {
-		ship.lastDir=null;
-	} else {
-		ship.lastDir = Math.atan2(nY,nX);
-	}
+function ship_establishDir(elapsed) {
+	var delta = elapsed*ship.baseMult*ship.speedMult;
+	if (keys.up) {ship.y[2]=ship.y[1]+delta;}
+	if (keys.down) {ship.y[2]=ship.y[1]-delta;}
+	if (keys.right) {ship.x[2]=ship.x[1]+delta;}
+	if (keys.left) {ship.x[2]=ship.x[1]-delta;}
 }

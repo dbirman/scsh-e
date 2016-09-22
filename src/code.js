@@ -1,3 +1,6 @@
+var renderer;
+
+
 // A variable that will store the state of the world for the client
 var state, canvas, ctx;
 var lastTick = Date.now();
@@ -13,20 +16,20 @@ var viewport = {
 }
 
 var ship = {
-	x:[0,0,2000],
+	// note that x and y are calculated relative to the current sphere of influence
+	// when the sphere jumps, so do the x/y positions
+	x:[0,0,1399],
 	y:[0,0,0],
-	dir:[0,0,0],
-	lastDir: null,
-	baseMult: 1,
-	speedMult: 10
+	// dir:[0,0,0],
+	// lastDir: null,
+	baseMult: 0.2,
+	speedMult: 1
 }
 
 var sun = {
-	// all positions are calculated relative to the sun
 	x:0,
 	y:0,
 	r:1000,
-	soi: 150
 }
 
 var planet = {
@@ -34,7 +37,7 @@ var planet = {
 	rot:0,
 	speed:-100000,
 	r:500,
-	soi: 25
+	soi: 100
 }
 
 // function inSOI(object) {
@@ -45,6 +48,12 @@ var planet = {
 
 // Launch the code
 function readyplayerone() {
+	var renderer = new PIXI.WebGLRenderer(window.innerWidth, window.innerHeight);
+
+	// The renderer will create a canvas element for you that you can then insert into the DOM.
+	document.body.appendChild(renderer.view);
+
+	return;
 	// variables
 	keys.up=false;keys.left=false;keys.right=false;keys.down=false;
 	// graphics
